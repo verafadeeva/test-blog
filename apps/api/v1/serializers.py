@@ -13,7 +13,9 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'surname', 'email')
 
 
-class PostSerializer(serializers.ModelSerializer):
+class PostOutputSerializer(serializers.ModelSerializer):
+    """Output сериализатор для постов"""
+
     author = UserSerializer()
     created_at = serializers.DateTimeField(read_only=True)
 
@@ -27,3 +29,11 @@ class PostSerializer(serializers.ModelSerializer):
             'is_published',
             'created_at',
         )
+
+
+class PostInputSerializer(serializers.Serializer):
+    """Input сериализатор для постов"""
+
+    title = serializers.CharField(max_length=100)
+    text = serializers.CharField(max_length=100)
+    is_published = serializers.BooleanField()
