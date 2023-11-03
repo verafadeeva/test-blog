@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "test-blog"
+version = "0.1.0"
+description = "API выполнено в рамках тестового задания"
+authors = ["verafadeeva <lunatik.yar@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "test_blog"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+django = "4.1"
+djangorestframework = "3.14.0"
+drf-spectacular = "^0.26.5"
+python-dotenv = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
