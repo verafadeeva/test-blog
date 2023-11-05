@@ -6,8 +6,8 @@ poetry:
 poetry-sh:
 	poetry shell
 
-migration:
+migration: poetry-sh
 	./manage.py migrate
 
-run:
+run: migration
 	./manage.py runserver
