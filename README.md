@@ -38,17 +38,14 @@ git clone git@github.com:verafadeeva/test-blog.git
 ```
 cd test-blog
 ```
-3. В директории /test-blog выполнить команду:
+3. Для управления зависимостями в проекте используется [poetry](https://python-poetry.org/docs/).
+4. В директории /test-blog выполнить команду:
 ```
-poetry install
+make poetry
 ```
-4. Активировать виртуальное окружение
+5. Чтобы запустить сервер
 ```
-poetry shell
-```
-5. Выполнить миграции
-```
-./manage.py runserver
+make run
 ```
 6. Локально API документация доступна по адресу
 http://localhost:8000/api/schema/swagger/
