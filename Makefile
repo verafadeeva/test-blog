@@ -1,9 +1,9 @@
-all: poetry poetry-sh migration
+all: poetry poetrysh migration
 
 poetry:
 	poetry install
 
-poetry-sh:
+poetrysh:
 	poetry shell
 
 migration:
