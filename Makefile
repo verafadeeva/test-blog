@@ -1,10 +1,11 @@
-all: poetry migration run
+poetry: poetry-inst
+	poetry shell
 
-poetry:
+poetry-inst:
 	poetry install --no-root
 
 migration:
 	./manage.py migrate
 
-run:
+run: migration
 	./manage.py runserver
