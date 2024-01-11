@@ -1,5 +1,6 @@
+import logging
+
 from rest_framework import status, views
-# from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema
@@ -8,6 +9,9 @@ from apps.api.v1.permissions import IsAuthorOrIsAdmin
 from apps.api.v1.serializers import PostOutputSerializer, PostInputSerializer
 from apps.blogs.selectors import get_all_posts, get_post
 from apps.blogs.services import (create_post, delete_post, update_post)
+
+
+logger = logging.getLogger(__name__)
 
 
 class ListPostView(views.APIView):
@@ -29,6 +33,7 @@ class ListPostView(views.APIView):
         description='Создание поста',
     )
     def post(self, request):
+        logger.info("Url: 'posts/'")
         serializer = PostInputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         post, created = create_post(serializer.validated_data, request.user)
@@ -60,6 +65,7 @@ class PostView(views.APIView):
         description='Изменение поста',
     )
     def put(self, request, id=None):
+        logger.info("Url: 'posts/%d'", id)
         post = get_post(id)
         self.check_object_permissions(request, post)
         post = update_post(id, request.data)
@@ -69,6 +75,7 @@ class PostView(views.APIView):
         )
 
     def delete(self, request, id=None):
+        logger.info("Url: 'posts/%d'", id)
         post = get_post(id)
         self.check_object_permissions(request, post)
         delete_post(id)
